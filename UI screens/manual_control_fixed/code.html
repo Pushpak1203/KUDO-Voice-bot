@@ -1,0 +1,285 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>KUDO VoiceBot - Manual Control</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed": "#0b1c30",
+                        "secondary": "#505f76",
+                        "primary": "#0058be",
+                        "tertiary-container": "#00873b",
+                        "primary-container": "#2170e4",
+                        "inverse-primary": "#adc6ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "secondary-container": "#d0e1fb",
+                        "on-surface-variant": "#424754",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#f7fff3",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#005ac2",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d3e4fe",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#001a42",
+                        "surface": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#006b2d",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "outline": "#727785",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c2c6d6",
+                        "on-tertiary": "#ffffff"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        xs: "8px",
+                        lg: "24px",
+                        base: "4px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px",
+                        sm: "12px",
+                        md: "16px",
+                        xl: "32px"
+                    },
+                    fontFamily: {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.1px", fontWeight: "500" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.5px", fontWeight: "500" }],
+                        "title-lg": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "title-md": ["16px", { lineHeight: "24px", fontWeight: "600" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .d-pad-btn {
+            touch-action: manipulation;
+        }
+        .d-pad-btn:active {
+            box-shadow: inset 0px 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-on-background docked full-width top-0 bg-background dark:bg-on-background flat no shadows flex justify-between items-center px-margin-mobile h-16 w-full z-40 sticky top-0 md:hidden">
+<button class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-outline-variant text-[24px]">robot_2</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">KUDO VoiceBot</h1>
+<button class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-outline-variant text-[24px]">bluetooth_connected</span>
+</button>
+</header>
+<!-- Desktop TopAppBar / Sidebar (Hidden on Mobile) -->
+<div class="hidden md:flex w-full bg-surface shadow-sm h-16 items-center px-6 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-[28px]">robot_2</span>
+<span class="font-headline-md text-headline-md text-primary">KUDO VoiceBot</span>
+</div>
+<div class="ml-auto flex gap-6">
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined">home</span> Home
+            </a>
+<a class="font-label-lg text-label-lg text-primary flex items-center gap-2 border-b-2 border-primary pb-1" href="#">
+<span class="material-symbols-outlined">settings_remote</span> Control
+            </a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined">history</span> History
+            </a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center px-margin-mobile md:px-lg max-w-4xl mx-auto w-full pt-4 pb-8 gap-8">
+<!-- Header & Status -->
+<div class="text-center w-full max-w-md">
+<h2 class="font-title-lg text-title-lg text-on-surface mb-2">Manual Control</h2>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-4 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] flex items-center justify-center gap-3 shadow-sm">
+<div class="w-3 h-3 rounded-full bg-tertiary-fixed-dim animate-pulse"></div>
+<span class="font-body-lg text-body-lg text-on-surface font-medium" id="status-text">Robot: Idle</span>
+</div>
+</div>
+<!-- D-Pad Container -->
+<div class="relative w-full max-w-[320px] aspect-square mx-auto flex items-center justify-center my-6">
+<!-- D-Pad Grid -->
+<div class="grid grid-cols-3 grid-rows-3 gap-4 w-full h-full">
+<!-- Up -->
+<div class="col-start-2 flex items-center justify-center">
+<button class="d-pad-btn w-16 h-16 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl shadow-sm flex items-center justify-center transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/50" data-command="Moving Forward">
+<span class="material-symbols-outlined text-[40px]">arrow_drop_up</span>
+</button>
+</div>
+<!-- Left -->
+<div class="col-start-1 row-start-2 flex items-center justify-center">
+<button class="d-pad-btn w-16 h-16 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl shadow-sm flex items-center justify-center transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/50" data-command="Turning Left">
+<span class="material-symbols-outlined text-[40px]">arrow_left</span>
+</button>
+</div>
+<!-- Center STOP -->
+<div class="col-start-2 row-start-2 flex items-center justify-center">
+<button class="w-20 h-20 bg-error text-on-error rounded-full shadow-lg flex items-center justify-center font-bold text-label-lg tracking-wider transition-all hover:bg-[#a3000b] active:scale-90 focus:outline-none focus:ring-4 focus:ring-error/30 z-10" id="stop-btn">
+        STOP
+      </button>
+</div>
+<!-- Right -->
+<div class="col-start-3 row-start-2 flex items-center justify-center">
+<button class="d-pad-btn w-16 h-16 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl shadow-sm flex items-center justify-center transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/50" data-command="Turning Right">
+<span class="material-symbols-outlined text-[40px]">arrow_right</span>
+</button>
+</div>
+<!-- Down -->
+<div class="col-start-2 row-start-3 flex items-center justify-center">
+<button class="d-pad-btn w-16 h-16 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl shadow-sm flex items-center justify-center transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/50" data-command="Moving Backward">
+<span class="material-symbols-outlined text-[40px]">arrow_drop_down</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Speed / Extra Controls (Bento Style hints) -->
+<div class="w-full max-w-md grid grid-cols-2 gap-4 mt-6">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-outline-variant/30 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-surface-bright transition-colors active:scale-95 flex-1">
+<span class="material-symbols-outlined text-primary text-[32px]">speed</span>
+<span class="font-label-lg text-label-lg text-on-surface">Speed: Normal</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-outline-variant/30 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-surface-bright transition-colors active:scale-95 flex-1">
+<span class="material-symbols-outlined text-secondary text-[32px]">lightbulb</span>
+<span class="font-label-lg text-label-lg text-on-surface">Headlights: Off</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6">
+<div class="hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out cursor-pointer flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1">
+<span class="material-symbols-outlined text-[24px] mb-1">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<!-- Active Tab: Control -->
+<div class="hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out cursor-pointer flex flex-col items-center justify-center bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-full px-5 py-1">
+<span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 1;">settings_remote</span>
+<span class="font-label-sm text-label-sm">Control</span>
+</div>
+<div class="hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out cursor-pointer flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1">
+<span class="material-symbols-outlined text-[24px] mb-1">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</div>
+<div class="hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out cursor-pointer flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1">
+<span class="material-symbols-outlined text-[24px] mb-1">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for D-Pad
+        const dPadBtns = document.querySelectorAll('.d-pad-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const statusText = document.getElementById('status-text');
+
+        dPadBtns.forEach(btn => {
+            btn.addEventListener('pointerdown', (e) => {
+                const command = e.currentTarget.getAttribute('data-command');
+                statusText.textContent = `Robot: ${command}`;
+                e.currentTarget.classList.add('bg-primary-fixed', 'text-primary-fixed-dim');
+                e.currentTarget.classList.remove('bg-surface-container');
+                
+                // Haptic feedback if available
+                if(navigator.vibrate) navigator.vibrate(50);
+            });
+            
+            btn.addEventListener('pointerup', (e) => {
+                 resetStatus();
+                 resetBtnStyle(e.currentTarget);
+            });
+            btn.addEventListener('pointerleave', (e) => {
+                 resetStatus();
+                 resetBtnStyle(e.currentTarget);
+            });
+        });
+
+        stopBtn.addEventListener('pointerdown', () => {
+             statusText.textContent = `Robot: STOPPED`;
+             statusText.classList.add('text-error');
+             if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
+        });
+        stopBtn.addEventListener('pointerup', () => {
+             setTimeout(() => {
+                 statusText.classList.remove('text-error');
+                 resetStatus();
+             }, 1000);
+        });
+
+        function resetStatus() {
+            statusText.textContent = 'Robot: Idle';
+        }
+        
+        function resetBtnStyle(btn) {
+            btn.classList.remove('bg-primary-fixed', 'text-primary-fixed-dim');
+            btn.classList.add('bg-surface-container');
+        }
+    </script>
+
+
+</body></html>

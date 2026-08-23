@@ -1,0 +1,308 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KUDO VoiceBot - Control</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed": "#0b1c30",
+                        "secondary": "#505f76",
+                        "primary": "#0058be",
+                        "tertiary-container": "#00873b",
+                        "primary-container": "#2170e4",
+                        "inverse-primary": "#adc6ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "secondary-container": "#d0e1fb",
+                        "on-surface-variant": "#424754",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#f7fff3",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#005ac2",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d3e4fe",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#001a42",
+                        "surface": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#006b2d",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "outline": "#727785",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c2c6d6",
+                        "on-tertiary": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "xs": "8px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px",
+                        "sm": "12px",
+                        "md": "16px",
+                        "xl": "32px"
+                    },
+                    fontFamily: {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.1px", fontWeight: "500" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.5px", fontWeight: "500" }],
+                        "title-lg": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "title-md": ["16px", { lineHeight: "24px", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Mic Pulse Animation */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .listening .pulse-bg {
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        .listening .mic-btn {
+            background-color: theme('colors.primary-container');
+            box-shadow: 0 0 15px theme('colors.primary-fixed-dim');
+        }
+
+        /* Neumorphic Inner Shadow for Active Buttons */
+        .inner-shadow:active {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-background">
+<button class="w-12 h-12 flex items-center justify-center text-primary rounded-full hover:bg-surface-container-high transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-title-lg">robot_2</span>
+</button>
+<div class="font-headline-md text-headline-md-mobile font-bold text-primary">KUDO VoiceBot</div>
+<button class="w-12 h-12 flex items-center justify-center text-primary rounded-full hover:bg-surface-container-high transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-title-lg">bluetooth_connected</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow pt-[80px] pb-[100px] px-margin-mobile flex flex-col items-center max-w-lg mx-auto w-full">
+<!-- Screen Title Context -->
+<div class="w-full text-center mb-xl">
+<h1 class="font-title-lg text-title-lg text-on-surface">Voice Command</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1" id="connection-status">Ready to receive instructions</p>
+</div>
+<!-- Primary Control: Microphone -->
+<div class="relative w-48 h-48 flex items-center justify-center mb-xl group mx-auto" id="mic-container">
+<!-- Pulsing Background (Hidden when idle) -->
+<div class="pulse-bg absolute inset-0 rounded-full bg-primary-fixed-dim opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<!-- Main FAB -->
+<button class="mic-btn relative z-10 w-32 h-32 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0px_8px_30px_rgba(15,23,42,0.15)] active:scale-95 transition-all duration-300 inner-shadow" id="mic-button">
+<span class="material-symbols-outlined filled text-[48px]" style="font-size: 48px;">mic</span>
+</button>
+</div>
+<!-- Speech & Response Cards (Bento style) -->
+<div class="w-full grid grid-cols-1 gap-md mb-xl">
+<!-- Recognized Speech -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-[20px] p-md shadow-[0px_4px_20px_rgba(15,23,42,0.03)] flex flex-col items-center justify-center min-h-[100px] transition-all duration-300 p-lg" id="speech-box">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Recognized Input</span>
+<span class="font-title-lg text-title-lg text-on-surface text-center min-h-[28px]" id="speech-text">...</span>
+</div>
+<!-- Robot Response -->
+<div class="bg-surface-container-low rounded-[20px] p-md flex items-center gap-md border border-outline-variant/10">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div class="flex-grow">
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Robot Status</span>
+<span class="block font-body-md text-body-md text-on-surface font-medium" id="response-text">Awaiting Command</span>
+</div>
+</div>
+</div>
+<!-- Emergency Stop (High Emphasis Danger) -->
+<button class="w-full bg-error text-on-error rounded-[16px] font-title-md text-title-md shadow-[0px_4px_20px_rgba(186,26,26,0.2)] active:scale-95 transition-transform flex justify-center items-center gap-xs mb-xl inner-shadow h-[56px]">
+<span class="material-symbols-outlined filled">warning</span>
+            EMERGENCY STOP
+        </button>
+<!-- Recent Commands (Glass/Soft Bento List) -->
+<div class="w-full">
+<h2 class="font-title-md text-title-md text-on-surface mb-md px-2">Recent Commands</h2>
+<div class="grid grid-cols-2 gap-sm gap-md">
+<!-- Command Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm border border-outline-variant/20 flex flex-col shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">arrow_upward</span>
+<span class="font-label-sm text-label-sm text-outline">10:05 AM</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Forward</span>
+</div>
+<!-- Command Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm border border-outline-variant/20 flex flex-col shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-error text-[20px]">stop_circle</span>
+<span class="font-label-sm text-label-sm text-outline">10:04 AM</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Stop</span>
+</div>
+<!-- Command Item 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm border border-outline-variant/20 flex flex-col shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">turn_left</span>
+<span class="font-label-sm text-label-sm text-outline">09:58 AM</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Rotate Left</span>
+</div>
+<!-- Command Item 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm border border-outline-variant/20 flex flex-col shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">speed</span>
+<span class="font-label-sm text-label-sm text-outline">09:55 AM</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Speed 50%</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6 bg-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] z-50 border-none">
+<!-- Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant px-5 py-1 hover:bg-surface-container-highest transition-all rounded-xl active:scale-95 inner-shadow duration-200 ease-in-out w-16" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-sm text-label-sm opacity-80">Home</span>
+</a>
+<!-- Control (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 hover:bg-surface-container-highest transition-all shadow-md active:scale-95 inner-shadow duration-200 ease-in-out w-20" href="#">
+<span class="material-symbols-outlined filled mb-1">settings_remote</span>
+<span class="font-label-sm text-label-sm">Control</span>
+</a>
+<!-- History (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant px-5 py-1 hover:bg-surface-container-highest transition-all rounded-xl active:scale-95 inner-shadow duration-200 ease-in-out w-16" href="#">
+<span class="material-symbols-outlined mb-1">history</span>
+<span class="font-label-sm text-label-sm opacity-80">History</span>
+</a>
+<!-- Settings (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant px-5 py-1 hover:bg-surface-container-highest transition-all rounded-xl active:scale-95 inner-shadow duration-200 ease-in-out w-16" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="font-label-sm text-label-sm opacity-80">Settings</span>
+</a>
+</nav>
+<!-- Simple Interaction Logic -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const micBtn = document.getElementById('mic-button');
+            const micContainer = document.getElementById('mic-container');
+            const speechText = document.getElementById('speech-text');
+            const responseText = document.getElementById('response-text');
+            const connectionStatus = document.getElementById('connection-status');
+            const pulseBg = document.querySelector('.pulse-bg');
+            
+            let isListening = false;
+            let timeoutId;
+
+            micBtn.addEventListener('click', () => {
+                if (isListening) return; // Prevent multiple clicks while simulating
+                
+                isListening = true;
+                
+                // Visual State: Listening
+                micContainer.classList.add('listening');
+                pulseBg.style.opacity = '1';
+                speechText.textContent = 'Listening...';
+                speechText.classList.add('text-primary', 'animate-pulse');
+                connectionStatus.textContent = 'Processing audio...';
+                responseText.textContent = '...';
+
+                // Simulate processing delay
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    // Visual State: Recognized
+                    micContainer.classList.remove('listening');
+                    pulseBg.style.opacity = '0';
+                    speechText.classList.remove('text-primary', 'animate-pulse');
+                    speechText.textContent = '"Move Forward 5 Meters"';
+                    
+                    connectionStatus.textContent = 'Ready to receive instructions';
+                    responseText.textContent = 'Command Sent Successfully';
+                    
+                    isListening = false;
+                    
+                    // Reset to idle after a few seconds
+                    setTimeout(() => {
+                        if(!isListening) {
+                           speechText.textContent = '...';
+                           responseText.textContent = 'Awaiting Command'; 
+                        }
+                    }, 4000);
+
+                }, 2500);
+            });
+        });
+    </script>
+
+
+</body></html>

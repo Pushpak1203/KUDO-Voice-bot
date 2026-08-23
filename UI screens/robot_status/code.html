@@ -1,0 +1,297 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Robot Status - KUDO VoiceBot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed": "#0b1c30",
+                        "secondary": "#505f76",
+                        "primary": "#0058be",
+                        "tertiary-container": "#00873b",
+                        "primary-container": "#2170e4",
+                        "inverse-primary": "#adc6ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "secondary-container": "#d0e1fb",
+                        "on-surface-variant": "#424754",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#f7fff3",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#005ac2",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d3e4fe",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#001a42",
+                        "surface": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#006b2d",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "outline": "#727785",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c2c6d6",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px",
+                        "sm": "12px",
+                        "md": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Level 0 Background */
+        }
+        .bento-card {
+            background-color: white;
+            border-radius: 20px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05); /* Level 1 */
+            padding: 16px;
+        }
+        .bento-card.active-state {
+            box-shadow: 0px 8px 30px rgba(15, 23, 42, 0.08); /* Level 2 */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface h-screen flex flex-col overflow-hidden pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 bg-background dark:bg-on-background flat no shadows flex justify-between items-center px-margin-mobile h-16 w-full shrink-0 z-50">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" style="font-variation-settings: 'FILL' 1;">robot_2</span>
+<span class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">KUDO VoiceBot</span>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors p-xs rounded-full cursor-pointer" style="font-variation-settings: 'FILL' 1;">bluetooth_connected</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-margin-mobile py-lg w-full max-w-7xl mx-auto md:px-xl">
+<div class="mb-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-base md:font-headline-lg md:text-headline-lg">Robot Status</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time telemetry and diagnostics.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter-mobile">
+<!-- Connection Status -->
+<div class="bento-card col-span-2 md:col-span-2 flex flex-col justify-between min-h-[140px] relative overflow-hidden group"><div class="flex items-center justify-between mb-md relative z-10">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Connection</span>
+<div class="flex items-center gap-base">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-tertiary">Connected</span>
+</div>
+</div>
+<div class="flex items-center justify-between relative z-10">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-base">Bluetooth</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Signal: Strong (-45 dBm)</p>
+</div>
+<div class="bg-primary-fixed p-sm rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bluetooth</span>
+</div>
+</div></div>
+<!-- Battery Level -->
+<div class="bento-card col-span-2 md:col-span-1 flex flex-col justify-between min-h-[140px]"><div class="flex items-center justify-between mb-md">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Battery</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">85%</h2>
+<p class="font-body-sm text-body-sm text-tertiary">Discharging</p>
+</div>
+<span class="material-symbols-outlined text-tertiary text-[32px]" style="font-variation-settings: 'FILL' 1;">battery_charging_80</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 mt-md rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full w-[85%]"></div>
+</div></div>
+<!-- Distance -->
+<div class="bento-card col-span-2 md:col-span-1 flex flex-col justify-between min-h-[140px]"><div class="flex items-center justify-between mb-md">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Distance to Target</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">58 cm</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Closing</p>
+</div>
+<div class="bg-surface-container-highest p-sm rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">straighten</span>
+</div>
+</div></div>
+<!-- Current State -->
+<div class="bento-card col-span-2 md:col-span-2 flex flex-col justify-between min-h-[140px] active-state border-primary-fixed"><div class="flex items-center justify-between mb-md">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Current Task</span>
+<span class="bg-primary-fixed text-primary px-sm py-1 rounded-sm font-label-sm text-label-sm">Active</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-base">Moving</h2>
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">arrow_upward</span>
+<span class="font-body-sm text-body-sm">Direction: Forward</span>
+</div>
+</div>
+<div class="bg-primary-container p-sm rounded-full shadow-[0_0_15px_rgba(33,112,228,0.4)]">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">cloud_download</span>
+</div>
+</div></div>
+<!-- Obstacle Sensors -->
+<div class="bento-card col-span-2 md:col-span-2 flex flex-col justify-between min-h-[140px]">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Obstacle Sensors</span>
+<span class="font-label-sm text-label-sm text-tertiary">Clear</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-base">None Detected</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All sectors scanning</p>
+</div>
+<div class="bg-tertiary-container/20 p-sm rounded-full">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">radar</span>
+</div>
+</div>
+</div>
+<!-- Temperature -->
+<div class="bento-card col-span-2 md:col-span-1 flex flex-col justify-between min-h-[140px]">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Core Temp</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">32°C</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Optimal</p>
+</div>
+<div class="bg-surface-container-highest p-sm rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">device_thermostat</span>
+</div>
+</div>
+</div>
+<!-- Error Log summary -->
+<div class="bento-card col-span-2 md:col-span-3 flex flex-row items-center justify-between min-h-[80px]">
+<div class="flex items-center gap-md">
+<div class="bg-surface-container-highest p-sm rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">bug_report</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">System Logs</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">0 errors in last 24h</p>
+</div>
+</div>
+<button class="bg-surface-container-low text-primary font-label-lg text-label-lg px-md py-sm rounded-lg hover:bg-surface-container transition-colors">
+                     View
+                 </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6 bg-surface dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] shadow-lg z-50">
+            <a href="#" class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+                <span class="font-label-sm text-label-sm mt-1 opacity-70">Home</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-full px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings_remote</span>
+                <span class="font-label-sm text-label-sm mt-1">Control</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+                <span class="font-label-sm text-label-sm mt-1 opacity-70">History</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+                <span class="font-label-sm text-label-sm mt-1 opacity-70">Settings</span>
+            </a>
+        </nav>
+<!-- Fixing the Active Tab based on JSON strict labels -->
+<script>
+        // Correction on active tab to strict JSON adherence
+        document.querySelector('nav').innerHTML = `
+            <a href="#" class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+                <span class="font-label-sm text-label-sm mt-1 opacity-70">Home</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-full px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings_remote</span>
+                <span class="font-label-sm text-label-sm mt-1">Control</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+                <span class="font-label-sm text-label-sm mt-1 opacity-70">History</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all Active: inner-shadow duration-200 ease-in-out">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+                <span class="font-label-sm text-label-sm mt-1 opacity-70">Settings</span>
+            </a>
+        `;
+    </script>
+
+
+</body></html>

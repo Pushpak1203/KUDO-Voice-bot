@@ -1,0 +1,216 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Connect Robot - KUDO VoiceBot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed": "#0b1c30",
+                        "secondary": "#505f76",
+                        "primary": "#0058be",
+                        "tertiary-container": "#00873b",
+                        "primary-container": "#2170e4",
+                        "inverse-primary": "#adc6ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "secondary-container": "#d0e1fb",
+                        "on-surface-variant": "#424754",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#f7fff3",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#005ac2",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d3e4fe",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#001a42",
+                        "surface": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#006b2d",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "outline": "#727785",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c2c6d6",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "card": "20px",
+                        "btn": "16px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px",
+                        "sm": "12px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "touch": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    },
+                    boxShadow: {
+                        'm3-level1': '0px 4px 20px rgba(15, 23, 42, 0.05)',
+                        'm3-level2': '0px 8px 30px rgba(15, 23, 42, 0.08)',
+                        'btn-inner': 'inset 0px 2px 4px rgba(0, 0, 0, 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F8FAFC;
+        }
+        .pulse-ring {
+            animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col items-center">
+<!-- Top App Bar (Modified for transactional screen - back button) -->
+<header class="flex justify-between items-center px-margin-mobile h-16 w-full max-w-[480px] bg-background">
+<button class="w-touch h-touch flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<div class="font-headline-md text-headline-md-mobile font-bold text-primary"></div>
+<div class="w-touch h-touch"></div> <!-- Spacer for balance -->
+</header>
+<main class="flex-1 w-full max-w-[480px] px-margin-mobile pb-xl flex flex-col">
+<!-- Header Section -->
+<div class="flex flex-col items-center mt-xl mb-xl">
+<div class="w-24 h-24 rounded-full bg-primary-fixed flex items-center justify-center mb-6 relative">
+<div class="absolute inset-0 rounded-full border-2 border-primary opacity-20 pulse-ring"></div>
+<span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1;">bluetooth</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background text-center">Connect Robot</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant text-center mt-2">Select a device to establish a connection.</p>
+</div>
+<!-- Device List (Bento-style list) -->
+<div class="flex-1 flex flex-col gap-sm">
+<!-- Device Item 1 (Selected/Connected attempt) -->
+<button class="w-full bg-surface-container-lowest rounded-card p-4 flex items-center gap-4 shadow-m3-level2 border border-primary transition-all active:scale-95 group relative overflow-hidden h-24">
+<div class="absolute inset-0 bg-primary opacity-[0.04]"></div>
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center shrink-0 relative z-10">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">robot_2</span>
+</div>
+<div class="flex-1 text-left relative z-10">
+<h3 class="font-title-md text-title-md text-on-background">VoiceBot</h3>
+<p class="font-body-md text-body-md text-primary">Connecting...</p>
+</div>
+<div class="w-6 h-6 flex items-center justify-center relative z-10">
+<span class="material-symbols-outlined text-primary animate-spin" style="font-variation-settings: 'FILL' 0;">progress_activity</span>
+</div>
+</button>
+<!-- Device Item 2 -->
+<button class="w-full bg-surface-container-lowest rounded-card p-4 flex items-center gap-4 shadow-m3-level1 border border-surface-variant hover:shadow-m3-level2 transition-all active:scale-95 group h-24">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">developer_board</span>
+</div>
+<div class="flex-1 text-left">
+<h3 class="font-title-md text-title-md text-on-background">HC-05</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Available</p>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">bluetooth</span>
+</div>
+</button>
+<!-- Device Item 3 -->
+<button class="w-full bg-surface-container-lowest rounded-card p-4 flex items-center gap-4 shadow-m3-level1 border border-surface-variant hover:shadow-m3-level2 transition-all active:scale-95 group h-24">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">robot</span>
+</div>
+<div class="flex-1 text-left">
+<h3 class="font-title-md text-title-md text-on-background">Arduino Robot</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Available</p>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">bluetooth</span>
+</div>
+</button>
+<!-- Search Nearby Button (Secondary) -->
+<div class="mt-4 flex justify-center">
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-primary opacity-10 text-primary font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">search</span>
+                    Search Nearby Devices
+                </button>
+</div>
+</div>
+<!-- Sticky Bottom Actions -->
+<div class="mt-xl sticky bottom-4 z-50 pb-xl">
+<button class="w-full h-14 bg-primary text-on-primary rounded-btn font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-primary-container active:shadow-btn-inner transition-all shadow-m3-level1">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">bluetooth_connected</span>
+                Connect
+            </button>
+</div>
+</main>
+
+
+</body></html>

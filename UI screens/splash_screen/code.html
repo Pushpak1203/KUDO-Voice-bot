@@ -1,0 +1,273 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KUDO VoiceBot - Splash Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#e0e3e5",
+                      "primary-fixed": "#d8e2ff",
+                      "primary-fixed-dim": "#adc6ff",
+                      "surface-variant": "#e0e3e5",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#2d3133",
+                      "on-secondary-fixed": "#0b1c30",
+                      "secondary": "#505f76",
+                      "primary": "#0058be",
+                      "tertiary-container": "#00873b",
+                      "primary-container": "#2170e4",
+                      "inverse-primary": "#adc6ff",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#6bff8f",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-container": "#eceef0",
+                      "on-tertiary-fixed-variant": "#005321",
+                      "surface-bright": "#f7f9fb",
+                      "on-tertiary-fixed": "#002109",
+                      "on-primary-fixed-variant": "#004395",
+                      "tertiary-fixed-dim": "#4ae176",
+                      "secondary-container": "#d0e1fb",
+                      "on-surface-variant": "#424754",
+                      "surface-dim": "#d8dadc",
+                      "on-tertiary-container": "#f7fff3",
+                      "on-primary-container": "#fefcff",
+                      "on-background": "#191c1e",
+                      "on-secondary-container": "#54647a",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "surface-tint": "#005ac2",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#d3e4fe",
+                      "background": "#f7f9fb",
+                      "on-primary-fixed": "#001a42",
+                      "surface": "#f7f9fb",
+                      "on-surface": "#191c1e",
+                      "tertiary": "#006b2d",
+                      "inverse-on-surface": "#eff1f3",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "outline": "#727785",
+                      "surface-container-low": "#f2f4f6",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#c2c6d6",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "8px",
+                      "lg": "24px",
+                      "base": "4px",
+                      "margin-mobile": "20px",
+                      "gutter-mobile": "16px",
+                      "sm": "12px",
+                      "md": "16px",
+                      "xl": "32px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "title-lg": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.1px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.5px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "title-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .loading-dot {
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse-logo {
+            animation: pulseGlow 2s infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 0 0 rgba(0, 88, 190, 0.4); }
+            to { box-shadow: 0 0 20px 10px rgba(0, 88, 190, 0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background h-full flex flex-col items-center justify-center relative overflow-hidden font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container" style="opacity: 0; transition: opacity 0.5s;">
+<!-- Subtle Background Elements -->
+<div class="absolute inset-0 pointer-events-none opacity-20">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary-fixed blur-3xl mix-blend-multiply"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-secondary-fixed blur-3xl mix-blend-multiply"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 flex flex-col items-center justify-center w-full max-w-md px-margin-mobile text-center h-full">
+<!-- App Logo (Robot Icon) -->
+<div class="fade-in-up mb-xl relative" style="animation-delay: 0.1s;">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-[2rem] bg-surface flex items-center justify-center shadow-lg border border-surface-container-highest pulse-logo">
+<span class="material-symbols-outlined text-[64px] md:text-[80px] text-primary" style="font-variation-settings: 'FILL' 1;">
+                    robot_2
+                </span>
+</div>
+<!-- Decorative connection dots -->
+<div class="absolute -right-4 top-1/2 transform -translate-y-1/2 flex space-x-1 opacity-50 items-center">
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" style="animation-delay: 0.2s"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" style="animation-delay: 0.4s"></div>
+</div>
+</div>
+<!-- Title & Tagline -->
+<div class="fade-in-up flex flex-col items-center" style="animation-delay: 0.3s;">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background mb-xs tracking-tight">
+                KUDO VoiceBot
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px]">
+                Control Your Robot With Your Voice
+            </p>
+</div>
+<!-- Animated Loading Indicator -->
+<div class="absolute bottom-16 fade-in-up pb-lg" style="animation-delay: 0.6s;">
+<div class="flex items-center justify-center space-x-2">
+<div class="loading-dot w-3 h-3 bg-primary rounded-full"></div>
+<div class="loading-dot w-3 h-3 bg-primary rounded-full"></div>
+<div class="loading-dot w-3 h-3 bg-primary rounded-full"></div>
+</div>
+<p class="mt-4 font-label-sm text-label-sm text-outline tracking-widest uppercase">Initializing</p>
+</div>
+</main>
+<!-- Simulated progression to next screen -->
+<script>
+        setTimeout(() => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            // In a real app, this would route to the main dashboard
+            // window.location.href = '/dashboard';
+        }, 3500);
+    </script>
+
+
+</body></html>

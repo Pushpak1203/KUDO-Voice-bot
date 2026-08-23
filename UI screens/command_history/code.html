@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KUDO VoiceBot - Command History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#e0e3e5",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed": "#0b1c30",
+                        "secondary": "#505f76",
+                        "primary": "#0058be",
+                        "tertiary-container": "#00873b",
+                        "primary-container": "#2170e4",
+                        "inverse-primary": "#adc6ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "secondary-container": "#d0e1fb",
+                        "on-surface-variant": "#424754",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#f7fff3",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#005ac2",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d3e4fe",
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#001a42",
+                        "surface": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#006b2d",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "outline": "#727785",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c2c6d6",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "20px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px",
+                        "sm": "12px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "72": "72px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        .shadow-level-1 {
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-md pb-24">
+<!-- TopAppBar -->
+<header class="bg-background flex justify-between items-center px-margin-mobile h-16 w-full docked full-width top-0 sticky z-40 transition-transform scale-95 active:scale-90">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">robot_2</span>
+<h1 class="font-headline-md-mobile text-headline-md-mobile font-bold text-primary">KUDO VoiceBot</h1>
+</div>
+<span class="material-symbols-outlined text-primary text-[24px]">bluetooth_connected</span>
+</header>
+<main class="px-margin-mobile pt-sm max-w-2xl mx-auto">
+<!-- Page Title & Search -->
+<div class="mb-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-sm">History</h2>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-sm pl-10 pr-md font-body-lg text-body-lg text-on-surface placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary outline-none h-12 shadow-level-1 transition-all" placeholder="Search commands..." type="text">
+</div>
+</div>
+<!-- Timeline / List -->
+<div class="flex flex-col gap-xs">
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-md flex items-center shadow-level-1 border border-surface-container-highest transition-transform hover:scale-[1.01]">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-error-container flex items-center justify-center mr-md">
+<span class="material-symbols-outlined text-error">stop</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-title-md text-title-md text-on-surface">Stop</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Voice Command</p>
+</div>
+<div class="flex flex-col items-end text-right justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">09:18</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-md flex items-center shadow-level-1 border border-surface-container-highest transition-transform hover:scale-[1.01]">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mr-md">
+<span class="material-symbols-outlined text-primary-container">arrow_back</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-title-md text-title-md text-on-surface">Left</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Manual Override</p>
+</div>
+<div class="flex flex-col items-end text-right justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">09:14</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-lowest rounded-2xl p-md flex items-center shadow-level-1 border border-surface-container-highest transition-transform hover:scale-[1.01]">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mr-md">
+<span class="material-symbols-outlined text-primary-container">arrow_upward</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-title-md text-title-md text-on-surface">Forward</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Voice Command</p>
+</div>
+<div class="flex flex-col items-end text-right justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">09:10</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="bg-surface-container-lowest rounded-2xl p-md flex items-center shadow-level-1 border border-surface-container-highest transition-transform hover:scale-[1.01] opacity-70">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center mr-md">
+<span class="material-symbols-outlined text-on-surface-variant">sync</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-title-md text-title-md text-on-surface">Calibrate</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">System</p>
+</div>
+<div class="flex flex-col items-end text-right justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">08:45</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">check_circle</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6 bg-surface shadow-lg z-50 md:hidden">
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant flex-1 py-1 hover:bg-surface-container-highest transition-all rounded-xl group" href="#">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 group-active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px]">home</span>
+</div>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant flex-1 py-1 hover:bg-surface-container-highest transition-all rounded-xl group" href="#">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 group-active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px]">settings_remote</span>
+</div>
+<span class="font-label-sm text-label-sm">Control</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary flex-1 py-1 hover:bg-surface-container-highest transition-all rounded-xl group" href="#">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 bg-primary text-on-primary shadow-inner group-active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined fill text-[24px]">history</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-fixed-variant flex-1 py-1 hover:bg-surface-container-highest transition-all rounded-xl group" href="#">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 group-active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+</div>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+
+
+</body></html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KUDO VoiceBot - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#e0e3e5",
+                      "primary-fixed": "#d8e2ff",
+                      "primary-fixed-dim": "#adc6ff",
+                      "surface-variant": "#e0e3e5",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#2d3133",
+                      "on-secondary-fixed": "#0b1c30",
+                      "secondary": "#505f76",
+                      "primary": "#0058be",
+                      "tertiary-container": "#00873b",
+                      "primary-container": "#2170e4",
+                      "inverse-primary": "#adc6ff",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#6bff8f",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-container": "#eceef0",
+                      "on-tertiary-fixed-variant": "#005321",
+                      "surface-bright": "#f7f9fb",
+                      "on-tertiary-fixed": "#002109",
+                      "on-primary-fixed-variant": "#004395",
+                      "tertiary-fixed-dim": "#4ae176",
+                      "secondary-container": "#d0e1fb",
+                      "on-surface-variant": "#424754",
+                      "surface-dim": "#d8dadc",
+                      "on-tertiary-container": "#f7fff3",
+                      "on-primary-container": "#fefcff",
+                      "on-background": "#191c1e",
+                      "on-secondary-container": "#54647a",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "surface-tint": "#005ac2",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#d3e4fe",
+                      "background": "#f7f9fb",
+                      "on-primary-fixed": "#001a42",
+                      "surface": "#f7f9fb",
+                      "on-surface": "#191c1e",
+                      "tertiary": "#006b2d",
+                      "inverse-on-surface": "#eff1f3",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "outline": "#727785",
+                      "surface-container-low": "#f2f4f6",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#c2c6d6",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "8px",
+                      "lg": "24px",
+                      "base": "4px",
+                      "margin-mobile": "20px",
+                      "gutter-mobile": "16px",
+                      "sm": "12px",
+                      "md": "16px",
+                      "xl": "32px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "title-lg": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.1px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.5px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "title-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F8FAFC; /* Level 0 Background per style guide */
+        }
+        .m3-card {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+            border-radius: 20px;
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen text-on-background flex flex-col font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-on-background docked full-width top-0 sticky z-40 transition-shadow">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed text-[24px]" data-icon="robot_2">robot_2</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">KUDO VoiceBot</h1>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed text-[24px]" data-icon="bluetooth_connected">bluetooth_connected</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-margin-mobile pb-28 pt-4">
+<div class="max-w-3xl mx-auto space-y-lg">
+<!-- Welcome Card -->
+<div class="m3-card p-md flex flex-col justify-between overflow-hidden relative rounded-xl">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-secondary-container rounded-full opacity-50 blur-3xl"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<h2 class="font-title-lg text-title-lg text-on-surface mb-1">Hello! Robot is Connected</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">VoiceBot System Online</p>
+</div>
+<div class="bg-tertiary-container/20 p-2 rounded-full">
+<span class="material-symbols-outlined text-tertiary fill-icon" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</div>
+<div class="relative z-10 mt-6 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<span class="font-label-lg text-label-lg text-tertiary">Battery 85%</span>
+</div>
+</div>
+<!-- Quick Actions Grid -->
+<div>
+<h3 class="font-title-md text-title-md text-on-surface mb-sm">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-gutter-mobile gap-md">
+<!-- Action 1 -->
+<button class="m3-card p-md flex flex-col items-center justify-center gap-3 hover:shadow-[0px_8px_30px_rgba(15,23,42,0.08)] transition-all active:scale-95 group rounded-xl h-full">
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="mic">mic</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Voice Control</span>
+</button>
+<!-- Action 2 -->
+<button class="m3-card p-md flex flex-col items-center justify-center gap-3 hover:shadow-[0px_8px_30px_rgba(15,23,42,0.08)] transition-all active:scale-95 group rounded-xl h-full">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="gamepad">gamepad</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Manual Control</span>
+</button>
+<!-- Action 3 -->
+<button class="m3-card p-md flex flex-col items-center justify-center gap-3 hover:shadow-[0px_8px_30px_rgba(15,23,42,0.08)] transition-all active:scale-95 group rounded-xl h-full">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="analytics">analytics</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Robot Status</span>
+</button>
+<!-- Action 4 -->
+<button class="m3-card p-md flex flex-col items-center justify-center gap-3 hover:shadow-[0px_8px_30px_rgba(15,23,42,0.08)] transition-all active:scale-95 group rounded-xl h-full">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Settings</span>
+</button>
+</div>
+</div>
+<!-- Recent Activity -->
+<div>
+<h3 class="font-title-md text-title-md text-on-surface mb-sm">Recent Activity</h3>
+<div class="m3-card overflow-hidden rounded-xl">
+<div class="flex items-center gap-md p-md border-b border-outline-variant/30 h-[72px]">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="arrow_upward">arrow_upward</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-lg text-body-lg text-on-surface truncate">Move Forward</p>
+<p class="font-body-md text-body-md text-on-surface-variant">2m ago • Voice Command</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md border-b border-outline-variant/30 h-[72px]">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="rotate_right">rotate_right</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-lg text-body-lg text-on-surface truncate">Rotate Right 90°</p>
+<p class="font-body-md text-body-md text-on-surface-variant">15m ago • Manual Control</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md h-[72px]">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="power_settings_new">power_settings_new</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-lg text-body-lg text-on-surface truncate">System Boot</p>
+<p class="font-body-md text-body-md text-on-surface-variant">1h ago • Automatic</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Primary Action FAB (Microphone) -->
+<button class="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary rounded-full shadow-[0px_8px_30px_rgba(15,23,42,0.2)] flex items-center justify-center z-50 hover:bg-primary-container active:scale-95 transition-all outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+<span class="material-symbols-outlined text-on-primary fill-icon" data-icon="mic" data-weight="fill">mic</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="md:hidden bg-surface dark:bg-inverse-surface shadow-lg fixed bottom-0 w-full z-50">
+<div class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6 px-margin-mobile">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center gap-1 min-w-[64px] hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all rounded-xl p-1 group">
+<div class="flex flex-col items-center justify-center bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-full px-5 py-1 Active: inner-shadow duration-200 ease-in-out">
+<span class="material-symbols-outlined fill-icon" data-icon="home" data-weight="fill">home</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface group-hover:text-primary transition-colors">Home</span>
+</button>
+<!-- Control -->
+<button class="flex flex-col items-center justify-center gap-1 min-w-[64px] hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all rounded-xl p-1 group">
+<div class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1">
+<span class="material-symbols-outlined" data-icon="settings_remote">settings_remote</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Control</span>
+</button>
+<!-- History -->
+<button class="flex flex-col items-center justify-center gap-1 min-w-[64px] hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all rounded-xl p-1 group">
+<div class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface transition-colors">History</span>
+</button>
+<!-- Settings -->
+<button class="flex flex-col items-center justify-center gap-1 min-w-[64px] hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all rounded-xl p-1 group">
+<div class="flex flex-col items-center justify-center text-on-secondary-fixed-variant dark:text-secondary-fixed-dim px-5 py-1">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Simple logic to add a subtle scroll effect to the header
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-sm');
+                header.classList.remove('bg-background');
+                header.classList.add('bg-surface-container-lowest/90', 'backdrop-blur-md');
+            } else {
+                header.classList.remove('shadow-sm', 'bg-surface-container-lowest/90', 'backdrop-blur-md');
+                header.classList.add('bg-background');
+            }
+        });
+    </script>
+
+
+</body></html>
