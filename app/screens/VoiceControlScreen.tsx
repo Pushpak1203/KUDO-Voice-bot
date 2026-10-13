@@ -66,13 +66,6 @@ const VoiceControlScreen = ({ navigation }: any) => {
       else Logger.info(LogCategory.SYSTEM, message);
     });
 
-    const unsubLatency = VoiceService.onSpeechLatency((latencyMs, transcript) => {
-      const latencySeconds = (latencyMs / 1000).toFixed(2);
-      const message = `Speech recognition latency: ${latencySeconds}s for transcript "${transcript}"`;
-      if (latencyMs > 3000) Logger.warn(LogCategory.SYSTEM, message);
-      else Logger.info(LogCategory.SYSTEM, message);
-    });
-
     const unsubError = VoiceService.onError(() => {
       setSpeechText('...');
       setStatusText('Ready to receive instructions');
