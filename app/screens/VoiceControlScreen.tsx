@@ -4,6 +4,7 @@ import Icon from '@react-native-vector-icons/material-icons';
 
 import { VoiceService } from '../services/voice/VoiceService';
 import { Logger, LogCategory } from '../utils/Logger';
+import { Logger, LogCategory } from '../utils/Logger';
 
 import { IconButton } from '../components/IconButton';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -56,6 +57,13 @@ const VoiceControlScreen = ({ navigation }: any) => {
 
       setSpeechText(`"${text}"`);
       processCommand(text);
+    });
+
+    const unsubLatency = VoiceService.onSpeechLatency((latencyMs, transcript) => {
+      const latencySeconds = (latencyMs / 1000).toFixed(2);
+      const message = `Speech recognition latency: ${latencySeconds}s for transcript "${transcript}"`;
+      if (latencyMs > 3000) Logger.warn(LogCategory.SYSTEM, message);
+      else Logger.info(LogCategory.SYSTEM, message);
     });
 
     const unsubLatency = VoiceService.onSpeechLatency((latencyMs, transcript) => {
