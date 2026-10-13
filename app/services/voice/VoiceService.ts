@@ -11,6 +11,7 @@ export interface SpeechError {
 export type VoiceStateCallback = (isListening: boolean) => void;
 export type VoiceResultsCallback = (results: string[]) => void;
 export type VoiceErrorCallback = (error: SpeechError) => void;
+export type SpeechLatencyCallback = (latencyMs: number, transcript: string) => void;
 
 class VoiceRecognitionService {
   private _isListening = false;
@@ -23,6 +24,8 @@ class VoiceRecognitionService {
   private onResultsCallbacks: VoiceResultsCallback[] = [];
   private onPartialResultsCallbacks: VoiceResultsCallback[] = [];
   private onErrorCallbacks: VoiceErrorCallback[] = [];
+  private onSpeechLatencyCallbacks: SpeechLatencyCallback[] = [];
+  private speechStartedAt: number | null = null;
 
   constructor() {
     this.setupListeners();
@@ -32,6 +35,7 @@ class VoiceRecognitionService {
     if (Platform.OS !== 'android') return;
 
     voiceEmitter.addListener('onSpeechStart', () => {
+      this.speechStartedAt = Date.now();
       this._isListening = true;
       this.notifyStateChange();
     });
@@ -43,6 +47,12 @@ class VoiceRecognitionService {
     });
 
     voiceEmitter.addListener('onSpeechResults', (e: { value: string[] }) => {
+      const transcript = e.value?.[0] || '';
+      if (this.speechStartedAt !== null) {
+        const latencyMs = Date.now() - this.speechStartedAt;
+        this.onSpeechLatencyCallbacks.forEach(cb => cb(latencyMs, transcript));
+      }
+      this.speechStartedAt = null;
       this._isListening = false;
       this.notifyStateChange();
       this.notifyResults(e.value);
@@ -167,6 +177,14 @@ class VoiceRecognitionService {
     this.onErrorCallbacks.push(callback);
     return () => {
       this.onErrorCallbacks = this.onErrorCallbacks.filter(c => c !== callback);
+    };
+  }
+
+  /** Measures actual time from native speech-start to finalized transcript. */
+  public onSpeechLatency(callback: SpeechLatencyCallback) {
+    this.onSpeechLatencyCallbacks.push(callback);
+    return () => {
+      this.onSpeechLatencyCallbacks = this.onSpeechLatencyCallbacks.filter(c => c !== callback);
     };
   }
 
