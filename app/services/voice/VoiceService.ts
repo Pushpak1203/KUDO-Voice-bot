@@ -41,6 +41,7 @@ class VoiceRecognitionService {
     });
 
     voiceEmitter.addListener('onSpeechEnd', () => {
+      // Do not clear speechStartedAt here: Android emits speech-end before final results.
       this._isListening = false;
       this.notifyStateChange();
       this.handleContinuousRestart();
