@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, PermissionsAndroid, Platform } from 'react-native';
 import Icon from '@react-native-vector-icons/material-icons';
 
-import { VoiceService, SpeechError } from '../services/voice/VoiceService';
+import { VoiceService } from '../services/voice/VoiceService';
+import { Logger, LogCategory } from '../utils/Logger';
 
 import { IconButton } from '../components/IconButton';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -57,6 +58,13 @@ const VoiceControlScreen = ({ navigation }: any) => {
       processCommand(text);
     });
 
+    const unsubLatency = VoiceService.onSpeechLatency((latencyMs, transcript) => {
+      const latencySeconds = (latencyMs / 1000).toFixed(2);
+      const message = `Speech recognition latency: ${latencySeconds}s for transcript "${transcript}"`;
+      if (latencyMs > 3000) Logger.warn(LogCategory.SYSTEM, message);
+      else Logger.info(LogCategory.SYSTEM, message);
+    });
+
     const unsubError = VoiceService.onError(() => {
       setSpeechText('...');
       setStatusText('Ready to receive instructions');
@@ -66,6 +74,7 @@ const VoiceControlScreen = ({ navigation }: any) => {
     return () => {
       unsubState();
       unsubResults();
+      unsubLatency();
       unsubError();
       VoiceService.destroy();
     };
